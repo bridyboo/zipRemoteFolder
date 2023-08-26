@@ -6,18 +6,18 @@ import os
 POSTFIX = r'5.txt'
 base = r'B:\ForWatchdogProject\testFiles'  # so this shit works, because it's a static path
 ################################################################################################
-dest = r'B:\ForWatchdogProject\archives\archive'
+#dest = r'B:\ForWatchdogProject\archives\archive'  #for testing
 
-#destination = input("enter destination for zip")
-#target = os.path.join(destination + '.zip')
-
+# destination = input("enter destination for zip")
+# target = os.path.join(destination + '.zip')
 
 
 hostname = input("Input your server hostname here: ")
 port = 22
-username = input ("input username:")
+username = input("input username:")
 password = input("your password: ")
 
+path = input("input spool folder location :")
 # Create an SSH Client
 ssh = paramiko.SSHClient()
 ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -28,7 +28,7 @@ try:
 
     # Run commands on the remote server
     try:
-        archiver = fileArchive.FileArchive(base, os.path.dirname(dest), os.path.join(dest + '.zip'))
+        archiver = fileArchive.FileArchive(path, os.path.dirname(path), os.path.join(path + '.zip'))
         archiver.trimPathName()
         archiver.make_archive()
     except FileNotFoundError:
@@ -40,4 +40,3 @@ try:
 finally:
     # Close the SSH connection
     ssh.close()
-
