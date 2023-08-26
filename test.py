@@ -13,13 +13,16 @@ session = winrm.Session(
     server_cert_validation='ignore'  # You can change this based on your certificate validation requirements
 )
 
-# Define the folder path you want to open remotely
-folder_path = r'\\fsrv_01\H\mun0466test\spool_0466test - Copy'  # Replace with the actual folder path
+# Define the file path you want to write to remotely
+file_path = r'\\fsrv_01\H\mun0466test\test.txt'  # Replace with the actual file path
 
-# Define a PowerShell command to open the folder using Invoke-Item
-ps_script = f'Invoke-Item -Path "{folder_path}"'
+# Define the content you want to write to the file
+content_to_write = 'hello'
 
-# Execute the PowerShell command
+# Define a PowerShell script to write the content to the file
+ps_script = f'Set-Content -Path "{file_path}" -Value "{content_to_write}"'
+
+# Execute the PowerShell script
 result = session.run_ps(ps_script)
 
 # Print the command's standard output
