@@ -27,9 +27,12 @@ try:
     ssh.connect(hostname, port, username, password)
 
     # Run commands on the remote server
-    archiver = fileArchive.FileArchive(base, os.path.dirname(dest), os.path.join(dest + '.zip'))
-    archiver.trimPathName()
-    archiver.make_archive()
+    try:
+        archiver = fileArchive.FileArchive(base, os.path.dirname(dest), os.path.join(dest + '.zip'))
+        archiver.trimPathName()
+        archiver.make_archive()
+    except FileNotFoundError:
+        print("The file does not exist.")
 
     # Print the output of the command
     print("archive complete")
