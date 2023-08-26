@@ -13,8 +13,11 @@ session = winrm.Session(
     server_cert_validation='ignore'  # You can change this based on your certificate validation requirements
 )
 
-# Define a PowerShell command to execute remotely
-ps_script = 'Write-Host "Hello, from Python via WinRM"'
+# Define the folder path you want to open remotely
+folder_path = r'\\fsrv_01\H\mun0466test\spool_0466test - Copy'  # Replace with the actual folder path
+
+# Define a PowerShell command to open the folder using Invoke-Item
+ps_script = f'Invoke-Item -Path "{folder_path}"'
 
 # Execute the PowerShell command
 result = session.run_ps(ps_script)
