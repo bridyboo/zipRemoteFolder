@@ -10,7 +10,7 @@ class SharedPathArchive:
     # network_path = r"\\fsrv_01\H\mun0466test\test.txt"
 
     def archive(self, prefix):
-        archive = fileArchive.FileArchive(self.path, self.path,os.path.join(self.path + '.zip'), 'test')
+        archive = fileArchive.FileArchive(self.path, self.path,os.path.join(self.path + '.zip'), prefix)
         # Check if the file exists
         if os.path.exists(self.path):
             try:
