@@ -17,7 +17,9 @@ if not path.startswith(r'\\'):
     server = input("please provide server address: ")
     remote = remoteArchive.RemoteArchive(server, username, password)
     remote.archive(prefix)
+    input()
 
 else:
     sharedArchive = sharedPathArchive.SharedPathArchive(path)
     sharedArchive.archive(prefix)
+    input()
