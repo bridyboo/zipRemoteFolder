@@ -5,8 +5,6 @@ import fileArchive
 class SharedPathArchive:
     def __init__(self, path):
         self.path = path
-    # Define the network path to the shared drive
-    # network_path = r"\\fsrv_01\H\mun0466test\test.txt"
 
     def archive(self, prefix):
         archive = fileArchive.FileArchive(self.path, self.path, os.path.join(self.path + '.zip'), prefix)
