@@ -1,8 +1,7 @@
-# Import the os module for path manipulation
 import os
 import fileArchive
 
-
+# This class is to archive all files with a prefix on a shared network
 class SharedPathArchive:
     def __init__(self, path):
         self.path = path

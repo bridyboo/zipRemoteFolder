@@ -1,17 +1,13 @@
 import winrm
 
 
+# This class is to archive all files on a remote server with a specific prefix
 class RemoteArchive:
 
     def __init__(self, hostname, username, password):
         self.hostname = hostname
         self.username = "datacenter\\" + username
         self.password = password
-
-    # Define the server details
-    # hostname = "YVWTNMUN19CI12.datacenter.asp"
-    # username = "datacenter\\matthew.darmadi"  # Use double backslashes to escape
-    # password = "Ohshitcent6"
 
     def archive(self, prefix):
         # Define the path to the .txt file you want to edit on the remote server
