@@ -2,9 +2,9 @@ import shutil
 import os
 import zipfile
 
+
 # This class focuses on manipulating folder and file structures
 class FileArchive:
-
     def __init__(self, source, destination, target, prefix):
         self.source = source
         self.destination = destination

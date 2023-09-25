@@ -2,8 +2,8 @@
 import os
 import fileArchive
 
-class SharedPathArchive:
 
+class SharedPathArchive:
     def __init__(self, path):
         self.path = path
     # Define the network path to the shared drive

@@ -18,5 +18,6 @@ if not path.startswith(r'\\'):
     remote = remoteArchive.RemoteArchive(server, username, password)
     remote.archive(prefix)
 
-sharedArchive = sharedPathArchive.SharedPathArchive(path)
-sharedArchive.archive(prefix)
+else:
+    sharedArchive = sharedPathArchive.SharedPathArchive(path)
+    sharedArchive.archive(prefix)

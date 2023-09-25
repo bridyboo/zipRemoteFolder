@@ -5,7 +5,7 @@ class RemoteArchive:
 
     def __init__(self, hostname, username, password):
         self.hostname = hostname
-        self.username = username
+        self.username = "datacenter\\" + username
         self.password = password
 
     # Define the server details
@@ -28,7 +28,7 @@ class RemoteArchive:
 
         # Define the PowerShell command to zip files with a prefix
         powershell_command = (
-            f'Compress-Archive -Path "{remote_file_path}\\{file_prefix}*" -DestinationPath "{output_zip_file}"'
+            f'Compress-Archive -Path "{remote_file_path}\\{file_prefix}*" -DestinationPath "{output_zip_file}" -Force'
         )
 
         # Define the PowerShell command to delete files with a prefix
@@ -38,11 +38,11 @@ class RemoteArchive:
 
         # Execute the PowerShell script remotely
         result = session.run_ps(powershell_command)
-        delete_result = session.run_ps(powershell_delete_command)
+        session.run_ps(powershell_delete_command)
 
         # Check the execution result
         if result.status_code == 0:
             print(
-                f'Successfully zipped files with prefix "{file_prefix}" in "{remote_file_path}" to "{output_zip_file}"')
+                f'Successfully zipped files with prefix "{file_prefix}" to "{output_zip_file}.zip"')
         else:
             print(f'Error: {result.std_err.decode()}')
