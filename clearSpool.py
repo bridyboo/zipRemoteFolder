@@ -1,6 +1,6 @@
 import sharedPathArchive
 import remoteArchive
-import shutil
+import pwinput
 
 #######################################################################################################################
 POSTFIX = r'5.txt'
@@ -13,7 +13,7 @@ prefix = input("what prefix are you looking to archive? ")
 
 if not path.startswith(r'\\'):
     username = input("please provide username: ")
-    password = input("please provide password: ")
+    password = pwinput.pwinput()
     server = input("please provide server address: ")
     remote = remoteArchive.RemoteArchive(server, username, password)
     remote.archive(prefix)
