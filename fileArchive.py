@@ -1,6 +1,12 @@
 import shutil
 import os
 import zipfile
+import datetime
+
+
+def date():
+    curr_date = datetime.datetime.now()
+    return curr_date.strftime("%Y-%m-%d %H:%M:%S")
 
 
 # This class focuses on manipulating folder and file structures
@@ -8,7 +14,7 @@ class FileArchive:
     def __init__(self, source, destination, target, prefix):
         self.source = source
         self.destination = destination
-        self.target = target
+        self.target = target + date()  # this will have datetime for it's zip file
         self.prefix = prefix
 
     # This function is a wrapper for the shutil.make_archive function
