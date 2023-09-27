@@ -1,5 +1,11 @@
 import os
 import fileArchive
+import datetime
+
+
+def date():
+    curr_date = datetime.datetime.now()
+    return curr_date.strftime("%Y-%m-%d %H:%M:%S")
 
 
 # This class is to archive all files with a prefix on a shared network

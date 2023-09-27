@@ -19,7 +19,7 @@ class RemoteArchive:
         # Define the path to the .txt file you want to edit on the remote server
         remote_file_path = r'E:\temp\testFolder'  # this works
         file_prefix = prefix  # prefix for the spool type
-        output_zip_file = remote_file_path + date()  # zip folder name will have datetime
+        output_zip_file = remote_file_path # zip folder name will have datetime
 
         # Initialize a WinRM session with administrative credentials
         session = winrm.Session(
@@ -52,7 +52,7 @@ class RemoteArchive:
     def archiveAll(self):
         # Define the path to the .txt file you want to edit on the remote server
         remote_file_path = r'E:\temp\testFolder'  # this works
-        output_zip_file = remote_file_path + date()  # zip folder name will have datetime
+        output_zip_file = remote_file_path  # zip folder name will have datetime
 
         # Initialize a WinRM session with administrative credentials
         session = winrm.Session(

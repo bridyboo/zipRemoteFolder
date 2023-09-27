@@ -1,21 +1,20 @@
 import shutil
 import os
 import zipfile
-import datetime
-
-
-def date():
-    curr_date = datetime.datetime.now()
-    return curr_date.strftime("%Y-%m-%d %H:%M:%S")
 
 
 # This class focuses on manipulating folder and file structures
 class FileArchive:
-    def __init__(self, source, destination, target, prefix):
-        self.source = source
-        self.destination = destination
-        self.target = target + date()  # this will have datetime for it's zip file
-        self.prefix = prefix
+    def __init__(self, source, destination, target, prefix=None):
+        if prefix is None:
+            self.source = source
+            self.destination = destination
+            self.target = target  # this will have datetime for it's zip file
+        else:
+            self.source = source
+            self.destination = destination
+            self.target = target  # this will have datetime for it's zip file
+            self.prefix = prefix
 
     # This function is a wrapper for the shutil.make_archive function
     def _make_archive(self):
@@ -34,7 +33,11 @@ class FileArchive:
     # This will trigger when there's a file that ends with a specific 'postfix' i.e. testfile999 <<
     def zipFolder(self):
         self._make_archive()
-        # os.remove(base + file) ? don't know if this will work
+
+        # Use shutil.rmtree to delete all files in the folder
+        shutil.rmtree(self.source)
+
+        os.mkdir(self.source)  # recreate folder
 
     # This function is for zipping with a prefix
     def prefixZip(self):
