@@ -1,7 +1,6 @@
-import shutil
 import os
 import zipfile
-
+import shutil
 
 # This class focuses on manipulating folder and file structures
 class FileArchive:
@@ -25,7 +24,6 @@ class FileArchive:
         format = base.split('.')[1]
         archive_from = os.path.dirname(self.source)
         archive_to = os.path.basename(self.source.strip(os.sep))
-        print(self.source, self.target, archive_from, archive_to)
         shutil.make_archive(name, format, archive_from, archive_to)
         shutil.move('%s.%s' % (name, format), self.target)
 
