@@ -5,7 +5,7 @@ import datetime
 
 def date():
     curr_date = datetime.datetime.now()
-    return curr_date.strftime("%Y-%m-%d %H:%M:%S")
+    return curr_date.strftime("%Y-%m-%d_%H%M%S")
 
 
 # This class is to archive all files with a prefix on a shared network
@@ -15,12 +15,13 @@ class SharedPathArchive:
 
     # Archive/zip files with a prefix
     def archive(self, prefix):
-        archive = fileArchive.FileArchive(self.path, self.path, os.path.join(self.path + '.zip'), prefix)
+        target = os.path.join(self.path + date() + '.zip')
+        archive = fileArchive.FileArchive(self.path, self.path, target, prefix)
         # Check if the file exists
         if os.path.exists(self.path):
             try:
                 archive.prefixZip()
-                print(f'Successfully zipped files with prefix "{prefix}" to "{self.path}.zip"')
+                print(f'Successfully zipped files with prefix "{prefix}" to "{target}"')
 
             except Exception as e:
                 print(f"Error: {e}")
@@ -29,11 +30,12 @@ class SharedPathArchive:
 
     # Archive/zip everything in a folder
     def archiveAll(self):
-        archive = fileArchive.FileArchive(self.path, self.path, os.path.join(self.path + '.zip'))
+        target = os.path.join(self.path + date() + '.zip')
+        archive = fileArchive.FileArchive(self.path, self.path, target)
         if os.path.exists(self.path):
             try:
                 archive.zipFolder()
-                print(f'Successfully zipped files "{self.path}.zip"')
+                print(f'Successfully zipped files "{target}"')
 
             except Exception as e:
                 print(f"Error: {e}")

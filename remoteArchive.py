@@ -4,7 +4,7 @@ import datetime
 
 def date():
     curr_date = datetime.datetime.now()
-    return curr_date.strftime("%Y%m%d_%H%M%S")  # yyyyMMdd_hms
+    return curr_date.strftime("%Y-%m-%d_%H%M%S")  # yyyyMMdd_hms
 
 
 # This class is to archive all files on a remote server with a specific prefix

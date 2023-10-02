@@ -8,11 +8,11 @@ class FileArchive:
         if prefix is None:
             self.source = source
             self.destination = destination
-            self.target = target  # this will have datetime for it's zip file
+            self.target = target  # this will have datetime for its zip file
         else:
             self.source = source
             self.destination = destination
-            self.target = target  # this will have datetime for it's zip file
+            self.target = target  # this will have datetime for its zip file
             self.prefix = prefix
 
     # This function is a wrapper for the shutil.make_archive function
