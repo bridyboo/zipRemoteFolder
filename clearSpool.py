@@ -1,14 +1,15 @@
 import sharedPathArchive
 import remoteArchive
 import pwinput
-
+import os
 
 path = input("please add path for spool directory: ")
 choice = input("archive all (a) or prefix (b)? ")
 
+username = os.getlogin()
 if choice == 'a':
     if not path.startswith(r'\\'):
-        username = input("please provide username: ")
+        print("This is your username datacenter\\" + username)
         password = pwinput.pwinput()
         server = input("please provide server address: ")
         remote = remoteArchive.RemoteArchive(server, username, password)
@@ -25,7 +26,7 @@ else:
     prefix = input("what prefix are you looking to archive? ")
 
     if not path.startswith(r'\\'):
-        username = input("please provide username: ")
+        print("This is your username datacenter\\" + username)
         password = pwinput.pwinput()
         server = input("please provide server address: ")
         remote = remoteArchive.RemoteArchive(server, username, password)
