@@ -4,7 +4,7 @@ import datetime
 
 def date():
     curr_date = datetime.datetime.now()
-    return curr_date.strftime("%Y-%m-%d %H:%M:%S")
+    return curr_date.strftime("%Y%m%d_%H%M%S")  # yyyyMMdd_hms
 
 
 # This class is to archive all files on a remote server with a specific prefix
@@ -53,7 +53,7 @@ class RemoteArchive:
     def archiveAll(self):
         # Define the path to the .txt file you want to edit on the remote server
         remote_file_path = self.path  # this works
-        output_zip_file = remote_file_path  # zip folder name will have datetime
+        output_zip_file = remote_file_path + date()  # zip folder name will have datetime
 
         # Initialize a WinRM session with administrative credentials
         session = winrm.Session(
