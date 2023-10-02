@@ -12,7 +12,7 @@ if choice == 'a':
         print("This is your username datacenter\\" + username)
         password = pwinput.pwinput()
         server = input("please provide server address: ")
-        remote = remoteArchive.RemoteArchive(server, username, password)
+        remote = remoteArchive.RemoteArchive(server, username, password, path)
         remote.archiveAll()
         input()
 
@@ -29,7 +29,7 @@ else:
         print("This is your username datacenter\\" + username)
         password = pwinput.pwinput()
         server = input("please provide server address: ")
-        remote = remoteArchive.RemoteArchive(server, username, password)
+        remote = remoteArchive.RemoteArchive(server, username, password, path)
         remote.archive(prefix)
         input()
 

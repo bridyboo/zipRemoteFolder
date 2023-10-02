@@ -1,6 +1,7 @@
 import winrm
 import datetime
 
+
 def date():
     curr_date = datetime.datetime.now()
     return curr_date.strftime("%Y-%m-%d %H:%M:%S")
@@ -9,16 +10,17 @@ def date():
 # This class is to archive all files on a remote server with a specific prefix
 class RemoteArchive:
 
-    def __init__(self, hostname, username, password):
+    def __init__(self, hostname, username, password, path):
         self.hostname = hostname
         self.username = "datacenter\\" + username
         self.password = password
+        self.path = path
 
     def archive(self, prefix):
         # Define the path to the .txt file you want to edit on the remote server
-        remote_file_path = r'E:\temp\testFolder'  # this works
+        remote_file_path = self.path  # this works
         file_prefix = prefix  # prefix for the spool type
-        output_zip_file = remote_file_path # zip folder name will have datetime
+        output_zip_file = remote_file_path + date()  # zip folder name will have datetime
 
         # Initialize a WinRM session with administrative credentials
         session = winrm.Session(
@@ -50,7 +52,7 @@ class RemoteArchive:
 
     def archiveAll(self):
         # Define the path to the .txt file you want to edit on the remote server
-        remote_file_path = r'E:\temp\testFolder'  # this works
+        remote_file_path = self.path  # this works
         output_zip_file = remote_file_path  # zip folder name will have datetime
 
         # Initialize a WinRM session with administrative credentials
