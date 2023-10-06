@@ -1,5 +1,7 @@
 import os
 import zipfile
+from tqdm import tqdm
+import time
 
 # This class focuses on manipulating folder and file structures
 class FileArchive:
@@ -18,7 +20,7 @@ class FileArchive:
         all_file = [file for file in os.listdir(self.source)]
 
         with zipfile.ZipFile(self.target, 'w', zipfile.ZIP_DEFLATED) as zipf:
-            for file in all_file:
+            for file in tqdm(all_file, desc="Zipping Files"):
                 file_path = os.path.join(self.source, file)
                 zipf.write(file_path, file)
                 os.remove(file_path)
@@ -30,7 +32,7 @@ class FileArchive:
 
         # Create the ZIP archive and add the matching files to it
         with zipfile.ZipFile(self.target, 'w', zipfile.ZIP_DEFLATED) as zipf:
-            for file in matching_files:
+            for file in tqdm(matching_files, desc="zipping Files"):
                 file_path = os.path.join(self.source, file)
                 zipf.write(file_path, file)
                 os.remove(file_path)
