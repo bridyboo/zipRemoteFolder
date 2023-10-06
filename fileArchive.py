@@ -1,6 +1,5 @@
 import os
 import zipfile
-import shutil
 
 # This class focuses on manipulating folder and file structures
 class FileArchive:
@@ -15,27 +14,14 @@ class FileArchive:
             self.target = target  # this will have datetime for its zip file
             self.prefix = prefix
 
-    # This function is a wrapper for the shutil.make_archive function
-    def _make_archive(self):
-        if not os.path.exists(self.destination):
-            os.makedirs(self.destination)
-        base = os.path.basename(self.target)
-        name = base.split('.')[0]
-        format = base.split('.')[1]
-        archive_from = os.path.dirname(self.source)
-        archive_to = os.path.basename(self.source.strip(os.sep))
-        shutil.make_archive(name, format, archive_from, archive_to)
-        shutil.move('%s.%s' % (name, format), self.target)
-
-    # This function walks through the path queried and zips all the files in the folder into an archive folder
-    # This will trigger when there's a file that ends with a specific 'postfix' i.e. testfile999 <<
     def zipFolder(self):
-        self._make_archive()
+        all_file = [file for file in os.listdir(self.source)]
 
-        # Use shutil.rmtree to delete all files in the folder
-        shutil.rmtree(self.source)
-
-        os.mkdir(self.source)  # recreate folder
+        with zipfile.ZipFile(self.target, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for file in all_file:
+                file_path = os.path.join(self.source, file)
+                zipf.write(file_path, file)
+                os.remove(file_path)
 
     # This function is for zipping with a prefix
     def prefixZip(self):
