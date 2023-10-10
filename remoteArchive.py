@@ -40,8 +40,12 @@ class RemoteArchive:
         )
 
         # Execute the PowerShell script remotely
-        result = session.run_ps(powershell_command)
-        session.run_ps(powershell_delete_command)
+        with tqdm(total=2, desc="Processing") as pbar:  # wacky woohoo solution for this not elegant
+            result = session.run_ps(powershell_command)
+            pbar.update(1)
+            time.sleep(0.3)
+            session.run_ps(powershell_delete_command)
+            pbar.update(2)
 
         # Check the execution result
         if result.status_code == 0:
