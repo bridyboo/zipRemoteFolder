@@ -2,6 +2,8 @@ import sharedPathArchive
 import remoteArchive
 import pwinput
 import os
+import readline
+readline.parse_and_bind("control-v: paste")
 
 path = input("please add path for spool directory: ")
 choice = input("archive all (a) or prefix (b)? ")
