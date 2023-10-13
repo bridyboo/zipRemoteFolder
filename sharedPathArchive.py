@@ -3,6 +3,7 @@ import fileArchive
 import datetime
 
 
+# This static method is a helper function for the zip file's datetime
 def date():
     curr_date = datetime.datetime.now()
     return curr_date.strftime("%Y-%m-%d_%H%M%S")

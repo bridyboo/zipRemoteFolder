@@ -3,6 +3,7 @@ import zipfile
 from tqdm import tqdm
 import time
 
+
 # This class focuses on manipulating folder and file structures
 class FileArchive:
     def __init__(self, source, destination, target, prefix=None):

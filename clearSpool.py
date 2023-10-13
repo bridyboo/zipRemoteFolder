@@ -3,7 +3,10 @@ import remoteArchive
 import pwinput
 import os
 import readline
-readline.parse_and_bind("control-v: paste")
+
+# Quality of Life for CLI
+os.system('mode con: cols=150 lines=30')  # window size
+readline.parse_and_bind("control-v: paste")  # this allows ctrl+v for paste in older windows
 
 path = input("please add path for spool directory: ")
 choice = input("archive all (a) or prefix (b)? ")

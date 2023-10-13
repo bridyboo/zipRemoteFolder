@@ -2,6 +2,9 @@ import winrm
 import datetime
 from tqdm import tqdm
 import time
+
+
+# This static method is a helper function for the zip file's datetime
 def date():
     curr_date = datetime.datetime.now()
     return curr_date.strftime("%Y-%m-%d_%H%M%S")  # yyyyMMdd_hms
@@ -90,4 +93,3 @@ class RemoteArchive:
                 f'Successfully zipped files to "{output_zip_file}.zip"')
         else:
             print(f'Error: {result.std_err.decode()}')
-
