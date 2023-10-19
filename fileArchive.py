@@ -1,7 +1,7 @@
 import os
 import zipfile
 from tqdm import tqdm
-import time
+import shutil
 
 
 # This class focuses on manipulating folder and file structures
@@ -44,3 +44,8 @@ class FileArchive:
         basename = os.path.basename(self.source)
         destination = os.path.join(root, 'archives', 'archive_' + basename + '.zip')
         return destination
+
+    # This function moves path to destination
+    def moveFile(self, path):
+        shutil.move(path, self.destination)
+        return self.destination
