@@ -59,7 +59,7 @@ class RemoteArchive:
         # Check the execution result
         if result.status_code == 0:
             print(
-                f'Successfully zipped files with prefix "{file_prefix}" to "{output_zip_file}.zip"')
+                f'Successfully zipped files with prefix "{file_prefix}" to "{archive_path}"')
         else:
             print(f'Error: {result.std_err.decode()}')
 
@@ -101,6 +101,6 @@ class RemoteArchive:
         # Check the execution result
         if result.status_code == 0:
             print(
-                f'Successfully zipped files to "{output_zip_file}.zip"')
+                f'Successfully zipped files to "{archive_path}"')
         else:
             print(f'Error: {result.std_err.decode()}')
