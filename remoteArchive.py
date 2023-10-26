@@ -2,7 +2,7 @@ import winrm
 import datetime
 from tqdm import tqdm
 import time
-
+import os
 
 # This static method is a helper function for the zip file's datetime
 def date():
@@ -23,7 +23,7 @@ class RemoteArchive:
         # Define the path to the .txt file you want to edit on the remote server
         remote_file_path = self.path  # this works
         file_prefix = prefix  # prefix for the spool type
-        output_zip_file = remote_file_path + date()  # zip folder name will have datetime
+        output_zip_file = os.path.join(os.path.dirname(self.path), 'archive') + date()  # zip folder name will have datetime
 
         # Initialize a WinRM session with administrative credentials
         session = winrm.Session(
@@ -34,8 +34,8 @@ class RemoteArchive:
 
         # Define the PowerShell command to zip files with a prefix
         powershell_command = (
+            f'New-Item -Path "{remote_file_path}\\..\\archive" -ItemType Directory; ' +
             f'Compress-Archive -Path "{remote_file_path}\\{file_prefix}*" -DestinationPath "{output_zip_file}" -Force;'+
-            f'New-Item -Path "{remote_file_path}\\..\\archive" -ItemType Directory -Force; ' +
             f'Move-Item -Path "{output_zip_file}" -Destination "{remote_file_path}\\..\\archive" -Force'
         )
 
@@ -73,8 +73,8 @@ class RemoteArchive:
 
         # Define the PowerShell command to zip files with a prefix
         powershell_command = (
+            f'New-Item -Path "{remote_file_path}\\..\\archive" -ItemType Directory; ' +
             f'Compress-Archive -Path "{remote_file_path}\\*" -DestinationPath "{output_zip_file}" -Force;' +
-            f'New-Item -Path "{remote_file_path}\\..\\archive" -ItemType Directory -Force; ' +
             f'Move-Item -Path "{output_zip_file}" -Destination "{remote_file_path}\\..\\archive" -Force'
         )
 
