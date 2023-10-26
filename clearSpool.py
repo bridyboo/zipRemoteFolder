@@ -13,7 +13,7 @@ choice = input("archive all (a) or prefix (b)? ")
 
 username = os.getlogin()
 if choice == 'a':
-    if not path.startswith(r'\\'):
+    if not path.startswith(r'\\'):  # If path doesn't start with '\\' we need to remote to a different server
         print("This is your username datacenter\\" + username)
         password = pwinput.pwinput()
         server = input("please provide server address: ")
@@ -42,4 +42,3 @@ else:
         sharedArchive = sharedPathArchive.SharedPathArchive(path)
         sharedArchive.archive(prefix)
         input()
-

@@ -34,7 +34,9 @@ class RemoteArchive:
 
         # Define the PowerShell command to zip files with a prefix
         powershell_command = (
-            f'Compress-Archive -Path "{remote_file_path}\\{file_prefix}*" -DestinationPath "{output_zip_file}" -Force'
+            f'Compress-Archive -Path "{remote_file_path}\\{file_prefix}*" -DestinationPath "{output_zip_file}" -Force;'+
+            f'New-Item -Path "{remote_file_path}\\..\\archive" -ItemType Directory -Force; ' +
+            f'Move-Item -Path "{output_zip_file}" -Destination "{remote_file_path}\\..\\archive" -Force'
         )
 
         # Define the PowerShell command to delete files with a prefix
@@ -71,7 +73,9 @@ class RemoteArchive:
 
         # Define the PowerShell command to zip files with a prefix
         powershell_command = (
-            f'Compress-Archive -Path "{remote_file_path}\\*" -DestinationPath "{output_zip_file}" -Force'
+            f'Compress-Archive -Path "{remote_file_path}\\*" -DestinationPath "{output_zip_file}" -Force;' +
+            f'New-Item -Path "{remote_file_path}\\..\\archive" -ItemType Directory -Force; ' +
+            f'Move-Item -Path "{output_zip_file}" -Destination "{remote_file_path}\\..\\archive" -Force'
         )
 
         # Define the PowerShell command to delete files with a prefix
