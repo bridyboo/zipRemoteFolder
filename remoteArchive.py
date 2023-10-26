@@ -40,7 +40,7 @@ class RemoteArchive:
             New-Item -Path "{archive_path}" -ItemType Directory
         }}
         Compress-Archive -Path "{remote_file_path}\\{file_prefix}*" -DestinationPath "{output_zip_file}" -Force
-        Move-Item -Path "{output_zip_file}" -Destination "{archive_path}" -Force
+        Move-Item -Path "{output_zip_file}.zip" -Destination "{archive_path}" -Force
         """
 
         # Define the PowerShell command to delete files with a prefix
@@ -82,7 +82,7 @@ class RemoteArchive:
             New-Item -Path "{archive_path}" -ItemType Directory
         }}
         Compress-Archive -Path "{remote_file_path}\\*" -DestinationPath "{output_zip_file}" -Force
-        Move-Item -Path "{output_zip_file}" -Destination "{archive_path}" -Force
+        Move-Item -Path "{output_zip_file}.zip" -Destination "{archive_path}" -Force
         """
 
         # Define the PowerShell command to delete files with a prefix
